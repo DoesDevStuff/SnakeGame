@@ -14,3 +14,7 @@ Game is released here [Snake Game](https://charlietheindiedev.github.io/SnakeGam
 - Snake increases in length for each object eaten
 - Snake has a trail as it moves
 - Snake dies on contact with walls or itself
+
+#### AI snake
+- AI Snake is "fruit" seeking, making its movements more natural and less erratic
+- Able to respawn after death with delay
