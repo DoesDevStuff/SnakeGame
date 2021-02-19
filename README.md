@@ -12,6 +12,6 @@ Game is released here [Snake Game](https://charlietheindiedev.github.io/SnakeGam
 - The player can move the snake with the help of the arrow keys
 - The snake can “eat the objects” (i.e. object disappears)
 - Snake increases in length for each object eaten
-- Sanke has a trail as it moves
+- Snake has a trail as it moves
 - Snake dies on contact with walls or itself
 - Scoreboard, round indicator, game restarts, basic styling
