@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="\Icons\favicon.svg" sizes="32x32">
+    <title>Snake Game</title>
+</head>
+
+<header>
+</header>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-auto p-0 mx-auto">
+                <h1 id="game-title">Snake Game</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-auto p-0 mx-auto">
+                
+                <div class="row game-select">
+                    <div class="col selection">
+                        <button id="play-classic">Play it yourself!</button>
+                    </div>
+                </div>
+
+                <div class="col" id="countdown">
+                    <h2 id="countdown-display">&nbsp;</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto p-0 mx-auto instructions-display">
+                <p id="instructions"></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Write your code here -->
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-auto p-0 mx-auto" id="game-board">
+            </div>
+            <div class="col" id="score-board">
+                <div class="row">
+                    <div class="col" >
+                        Round: <span id="round-display"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Score: <span id="score-display"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" id="kills-board">
+                        Kills: <span id="kills-display"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" id="How-to-play">
+                        How to play:<br>Use arrow keys to move<span id="How-to-play"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="script.js"></script>
+</html>
