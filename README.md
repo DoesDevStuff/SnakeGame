@@ -3,7 +3,7 @@
 
 Snake Game with basic UI and AI
 ---
-Game is released here [Snake Game](https://charlietheindiedev.github.io/SnakeGame/)
+Game is released here [Snake Game](https://doesdevstuff.github.io/SnakeGame/)
 
 
 ### Personal Objectives
