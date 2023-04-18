@@ -2,6 +2,7 @@
 const gridSize = 40;
 //time taken for each refresh in ms
 const clock = 100;
+
 //Starting snake length
 const startLength = 10;
 //Snake head starting position
@@ -107,6 +108,27 @@ function countdownTimer(gamePlay, count = 3, go = "Go!") {
     }
 }
 
+function respawnTimer(func, count = 3, go = "Go!") {
+    let cddParent = document.getElementById("countdown");
+    let countdownInterval = setInterval(countdown, 1200);
+
+    function countdown() {
+        if (count === -1) {
+            clearInterval(countdownInterval);
+            func();
+            cddParent.innerHTML = "";
+            count = 3;
+        } else {
+            cddParent.innerText = "";
+            let h2 = document.createElement("p");
+            h2.id = "respawn-countdown"
+            h2.innerText = count === 0 ? "A new challenger has arrived." : `${count}`;
+            cddParent.appendChild(h2);
+            h2.classList.add("fade-out");
+            count--; 
+        }
+    }
+}
 
 
 function killAnimate(playerDied = false, type = "fadeOut"){
@@ -137,6 +159,19 @@ pc.onmouseover = function(){
         instructions.style.visibility = "hidden";
     }
 };
+
+
+let pb = document.getElementById("play-battleMode");
+pb.onmouseover = function(){
+    instructions.innerText = "Battle against an AI Snake."
+    instructions.classList.add('animate__animated', `animate__fadeIn`);
+    instructions.style.visibility = "visible";
+    pb.onmouseout = function (){
+        instructions.classList.remove('animate__animated', `animate__fadeIn`);
+        instructions.style.visibility = "hidden";
+    }
+};
+
 
 
 //--DISPLAY DOM MANIPULATION
@@ -325,7 +360,7 @@ class Snake {
 
 
 //------ SNAKE HELPER FUNCTIONS TO CHECK  FOR BORDER
-//Checks if the snake is OOB
+//Checks if the snake is Out of bounds (OOB) 
 function isSnakeOOB(snakeObj) {
     if (snakeObj.position[0].i > gridSize - 1 //east border
         ||
@@ -667,6 +702,35 @@ document.getElementById("play-classic").addEventListener('click', function () {
 
 });
 
+// BATTLE SNAKES
+document.getElementById("play-battleMode").addEventListener('click', function() {
+    clearDemo();
+
+    //Initialize player snake and fruit
+    playerSnake = new Snake();
+    snakeList.push(playerSnake);
+    playerSnake.setDisplay();
+
+    playerApple = new Fruit();
+    playerApple.setDisplay();
+
+    //Initialize controls
+    setControls(playerSnake);
+    setAllClickListeners(playerSnake);
+
+    //(Re)set scoreboard
+    scoreBoard.round++;
+    scoreBoard.resetScore();
+    toggleScoreDisplay(true);
+    document.getElementById("kills-board").style.visibility = "visible";
+    updateScoreDisplay();
+
+    // Begin Battle Mode
+    countdownTimer(gamePlayBattle, 3, 'Battle!');
+
+});
+
+
 //------ CLASSIC SNAKE GAMEPLAY
 let gamePlayClassic = function () {
 
@@ -709,6 +773,85 @@ let gamePlayClassic = function () {
         }
     }
 }
+
+
+//------ BATTLE MODE GAMEPLAY
+let gamePlayBattle = function() {
+    battleInterval = setInterval(step, clock);
+
+    function step() {
+        let currSnakeLastSeg = null;
+        let currAILastSeg = null;
+
+        //Store position of last segment of snake
+        if (!playerSnake.isDead) {
+            currSnakeLastSeg = getLastSeg(playerSnake.position);
+        }
+
+        if(!AI.isDead){
+            currAILastSeg = getLastSeg(AI.position);
+        }
+
+        //move snakes
+        playerSnake.move();
+        AI.autoMove(AIapple);
+
+        // Player Snake Dies end main interval
+        if(isSnakeOOB(playerSnake) || isSnakeHitSelf(playerSnake) || AI.isInSnake(playerSnake.position[0].i, playerSnake.position[0].j, true) ) {
+            if(playerSnake.position[0].i == AI.position[0].i) {
+                console.log("Head on collision");
+                killAnimate(true);
+            }
+            else{
+                console.log("Player Dead");
+                killAnimate(true);
+            }
+            clearInterval(battleInterval);
+            animateGameboard("headShake");
+            toggleStartMenu();
+        }
+        else {
+            // check conditions
+            //Player snake eats apple
+            if (playerSnake.isAtApple(playerApple)) {
+                playerApple.resetPosition();
+                playerSnake.pushSegment(currSnakeLastSeg);
+                scoreBoard.score++;
+                console.log(scoreBoard);
+            }
+
+            if (!AI.isDead) {
+                if (isSnakeHitSelf(AI) || playerSnake.isInSnake(AI.position[0].i, AI.position[0].j, true) || isSnakeOOB(AI)) {
+                    console.log(`AI is Dead`)
+                    animateGameboard("pulse");
+                    killAnimate();
+                    AI.kill();
+                    scoreBoard.kills++;
+
+                    respawnTimer(function () {
+                        AI = new AISnake();
+                        AI.setDisplay();
+                        AIapple.resetPosition();
+                    }, 3, "");
+
+                } else if (AI.isAtApple(AIapple)) {
+                    AIapple.resetPosition();
+                    AI.pushSegment(currAILastSeg);
+                }
+            }
+            //Reset grid display
+            clearGameBoardDisplay();
+            //Show display
+            playerSnake.setDisplay();
+            playerApple.setDisplay();
+            AI.setDisplay();
+            AIapple.setDisplay();
+            updateScoreDisplay();
+        }
+    }
+
+}
+
 
 //------ USER CONTROLS
 
