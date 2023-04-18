@@ -718,6 +718,14 @@ document.getElementById("play-battleMode").addEventListener('click', function() 
     setControls(playerSnake);
     setAllClickListeners(playerSnake);
 
+    //Initialize new AI Snake and Fruit
+    AI = new AISnake();
+    snakeList.push(AI);
+    AIapple = new Fruit();
+    AIapple.color = AIfruitColor;
+    AI.setDisplay();
+    AIapple.setDisplay();
+
     //(Re)set scoreboard
     scoreBoard.round++;
     scoreBoard.resetScore();
