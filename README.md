@@ -3,7 +3,7 @@
 
 Snake Game with Classic and AI Battle Modes
 ---
-Game is released here [Snake Game](https://doesdevstuff.github.io/SnakeGame/)
+Game is released here [Snake Game](https://doesdevstuff.github.io/SnakeGame-with-BattleMode/)
 
 
 ### Personal Objectives
