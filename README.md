@@ -1,5 +1,5 @@
 # SnakeGame
-![Snake_Game-preview](https://user-images.githubusercontent.com/74312830/182292064-fcc09de8-8ce4-4d76-be76-9004ac5a2b6b.png)
+![game-preview](https://user-images.githubusercontent.com/74312830/232890290-9309bfd3-ff8a-4e8f-a6f9-98bc00a11712.png)
 
 Snake Game with Classic and AI Battle Modes
 ---
@@ -43,8 +43,9 @@ Background color of the divs are switched on/off to animate the game objects at 
 Bootstrap was used to organize and centralize the game board and additional CSS styles to fix default sizes and colours.
 
 ## Overall Game Flow 
-### Classic Snake
-<img src="./classic.gif">
+
+### Classic Snake Mode
+<img src="./gifs/classic-snake.gif">
 
 - "Animation" of snake kicks off based on default direction of snake
 - At every refresh interval (set at 100ms), the game board clears and the snake gets "re-drawn" based on the direction of the snake 
@@ -126,8 +127,8 @@ Every time `move()` is executed:
 
 This ensures that the snake constantly follows through the trail of its head, whichever path it takes.
 
-### Battle Snakes
-<img src="./battle.gif"> 
+### Battle Snake Mode
+<img src="./gifs/battle-snake.gif"> 
 
 - The player snake behaves the same way as in the Classic version
 - An AI Snake (in green) is added as an obstacle/enemy for the player to avoid/kill
