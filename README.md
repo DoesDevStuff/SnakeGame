@@ -1,4 +1,4 @@
-# SnakeGame
+# Snake Game with AI Battle Mode
 ![game-preview](https://user-images.githubusercontent.com/74312830/232890290-9309bfd3-ff8a-4e8f-a6f9-98bc00a11712.png)
 
 Snake Game with Classic and AI Battle Modes
