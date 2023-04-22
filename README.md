@@ -189,7 +189,7 @@ IF fruit is N-E with respect to snake
 Given the basic 2-dimensional game board we will only need to replicate this logic symmetrically 4 ways - fruit relative positions at NE, NW, SE and SW. Code snippet [here](https://github.com/DoesDevStuff/SnakeGame/blob/208ca7661b1f02964fe678b7b070a2644cb57b88/script.js#L402-L474).
 
 #### AI Snake with more than 1 unit length
-owever, as the AI snake grows in length, and given the randomness of fruit respawn, snake would inadvertently run into its own body. The suggested direction will then need to be modified when this happens, and this will be dependent on the direction of the snake segment it is about to collide into.
+As the AI snake grows in length, and given the randomness of fruit respawn, snake would inadvertently run into its own body. The suggested direction will then need to be modified when this happens, and this will be dependent on the direction of the snake segment it is about to collide into.
 
 The following psuedo code handles this:
 ```
